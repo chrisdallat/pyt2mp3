@@ -87,7 +87,19 @@ def program():
                 break
     update_list(lines)
 
+def init_downloader():
+    #if downloads folder doesn't exist, create it
+    if not os.path.exists(DOWNLOADS):
+        os.makedirs(DOWNLOADS)
+        print("Downloads folder has been created")
+    #if list.txt doesn't exist, create it
+    if not os.path.exists("list.txt"):
+        with open('list.txt', 'w') as f:
+            print("Download list has been created")
+            f.close()
+
 if __name__ == "__main__":
+    init_downloader()
     if len(sys.argv) == 1:
         program()
     elif len(sys.argv) == 2 and sys.argv[1] == "clear":
