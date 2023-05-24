@@ -53,6 +53,10 @@ To manually delete all the audio files saved in downloads, leaving it empty, can
     python3 downloader.py empty
 ```
 
+## Errors
+
+When errors with download occur for whatever reason the undownloaded urls will remain in the list.txt so users can reattempt to download without confusion on what has been downloaded or not. if urls were manually entered then they can be reinspected for errors. Errors will print to the terminal for the most common issues so refer to the CLI for 'DOWNLOADER: ------'  
+
 ## License
 
 This is free and unencumbered software released into the public domain.

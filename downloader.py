@@ -14,14 +14,14 @@ def extract_from_list(link):
         yt = YouTube(link, use_oauth=True, allow_oauth_cache=True)
         yt._video_regex = re.compile(r"\"url\":\"(/watch\?v=[\w-]*)")
     except:
-        print("Invalid link")
+        print("DOWNLOADER: Invalid link")
         return -1
 
     video = yt.streams.filter(only_audio=True).first()
     out_file = video.download(output_path=CWD)
 
     if not out_file:
-        print("Download failed for: ", yt.title)
+        print("DOWNLOADER: Download failed for: ", yt.title)
         return -1
    
     base, ext = os.path.splitext(out_file)
@@ -33,7 +33,7 @@ def extract_from_list(link):
     
     os.remove(new_file)
 
-    print(yt.title + " has been successfully downloaded!")
+    print("DOWNLOADER: " + yt.title + " has been successfully downloaded!")
 
     return 0
 
@@ -41,7 +41,7 @@ def extract_playlist(link):
     try:
         playlist = Playlist(link)
     except:
-        print("Invalid link")
+        print("DOWNLOADER: Invalid link")
         return -1
     
     playlist._video_regex = re.compile(r"\"url\":\"(/watch\?v=[\w-]*)")
@@ -61,21 +61,21 @@ def convert_final(input_file, output_file):
     ])
 
 def empty_downloads():
-    for file in os.listdir("./downloads"):
-        os.remove(os.path.join("./downloads", file))
-    print("Downloads folder has been emptied")
+    for file in os.listdir(DOWNLOADS):
+        os.remove(os.path.join(DOWNLOADS, file))
+    print("DOWNLOADER: Downloads folder has been emptied")
 
 def update_list(lines):
     with open('list.txt', 'w') as f:
         for line in lines:
             if "$delete$" not in line:
                 f.write(line)
-    print("Download list has been updated")
+    print("DOWNLOADER: Download list has been updated")
 
 def clear_list():
     with open('list.txt', 'w') as f:
         f.write("")
-        print("Download list has been cleared")
+        print("DOWNLOADER: Download list has been cleared")
 
 def program():
     with open('list.txt') as f:
@@ -92,11 +92,11 @@ def init_downloader():
     #if downloads folder doesn't exist, create it
     if not os.path.exists(DOWNLOADS):
         os.makedirs(DOWNLOADS)
-        print("Downloads folder has been created")
+        print("DOWNLOADER: Downloads folder has been created")
     #if list.txt doesn't exist, create it
     if not os.path.exists("list.txt"):
         with open('list.txt', 'w') as f:
-            print("Download list has been created")
+            print("DOWNLOADER: Download list has been created")
             f.close()
 
 if __name__ == "__main__":
@@ -112,7 +112,7 @@ if __name__ == "__main__":
         extract_playlist(playlist)
         program()
     else:
-        print("Invalid arguments")
+        print("DOWNLOADER: Invalid arguments")
         exit()
 
 
