@@ -4,6 +4,8 @@
 
 Single file Python3 script for downloading singular youtube video audio tracks, or exctracting a full playlist.
 
+If any age restrictions prevent download, authentication tools have been built in so authentication only needs to take place once in the session on the API to allow downloads to continue unhindered.
+
 ### Dependencies
 
 ```
@@ -56,6 +58,11 @@ To manually delete all the audio files saved in downloads, leaving it empty, can
 ## Errors
 
 When errors with download occur for whatever reason the undownloaded urls will remain in the list.txt so users can reattempt to download without confusion on what has been downloaded or not. if urls were manually entered then they can be reinspected for errors. Errors will print to the terminal for the most common issues so refer to the CLI for 'DOWNLOADER: ------'  
+
+NOTE: on MacOS when songs are imported to Apple Music/Itunes the duration has doubled, but can be rectified by selecting the files, and doing 
+```
+    File > Convert > Create MP3 Version
+```
 
 ## License
 
