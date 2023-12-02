@@ -108,7 +108,7 @@ if __name__ == "__main__":
     elif len(sys.argv) == 2 and sys.argv[1] == "empty":
         empty_downloads()
     elif len(sys.argv) == 2 and sys.argv[1] == "playlist":
-        playlist = input("Enter playlist link: ")
+        playlist = input("Enter Playlist Link: ")
         extract_playlist(playlist)
         program()
     else:
