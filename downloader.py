@@ -54,6 +54,9 @@ def extract_playlist(link):
 
 
 def convert_final(input_file, output_file):
+    # Replace escaped single quotes with a single quote in the filename
+    output_file = output_file.replace("//", "")
+
     subprocess.run([
         'ffmpeg',
         '-i', input_file,
