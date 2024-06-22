@@ -19,6 +19,7 @@ def extract_from_list(link):
 
     video = yt.streams.filter(only_audio=True).first()
     out_file = video.download(output_path=CWD)
+    out_file.replace(".", "")
 
     if not out_file:
         print("DOWNLOADER: Download failed for: ", yt.title)
@@ -27,13 +28,14 @@ def extract_from_list(link):
     base, ext = os.path.splitext(out_file)
     new_file = base + '.mp3'
     os.rename(out_file, new_file)
-    final = yt.title + ".mp3" 
+    title = yt.title.replace(".", "")
+    final = title + ".mp3" 
 
     convert_final(os.path.join(CWD, new_file), os.path.join(DOWNLOADS, final))
     
     os.remove(new_file)
 
-    print("DOWNLOADER: " + yt.title + " has been successfully downloaded!")
+    print("DOWNLOADER: " + title + " has been successfully downloaded!")
 
     return 0
 
@@ -56,6 +58,8 @@ def extract_playlist(link):
 def convert_final(input_file, output_file):
     # Replace escaped single quotes with a single quote in the filename
     output_file = output_file.replace("//", "")
+    output_file = output_file.replace("..", ".")
+
 
     subprocess.run([
         'ffmpeg',
