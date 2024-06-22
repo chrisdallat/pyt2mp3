@@ -7,6 +7,7 @@ Single file Python3 script for downloading singular youtube video audio tracks, 
 If any age restrictions prevent download, authentication tools have been built in so authentication only needs to take place once in the session on the API to allow downloads to continue unhindered.
 
 ### Dependencies
+***NOTE remember to update these dependencies if it says they are not found or other errors I have come across.***
 
 ```
     pip install pytube
